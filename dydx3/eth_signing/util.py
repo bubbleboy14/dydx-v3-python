@@ -28,12 +28,12 @@ def ec_recover_typed_signature(
     if sig_type == constants.SIGNATURE_TYPE_NO_PREPEND:
         prepended_hash = hashVal
     elif sig_type == constants.SIGNATURE_TYPE_DECIMAL:
-        prepended_hash = Web3.solidityKeccak(
+        prepended_hash = Web3.solidity_keccak(
             ['string', 'bytes32'],
             [PREPEND_DEC, hashVal],
         )
     elif sig_type == constants.SIGNATURE_TYPE_HEXADECIMAL:
-        prepended_hash = Web3.solidityKeccak(
+        prepended_hash = Web3.solidity_keccak(
             ['string', 'bytes32'],
             [PREPEND_HEX, hashVal],
         )
@@ -104,4 +104,4 @@ def addresses_are_equal(
 
 
 def hash_string(input):
-    return Web3.solidityKeccak(['string'], [input])
+    return Web3.solidity_keccak(['string'], [input])
