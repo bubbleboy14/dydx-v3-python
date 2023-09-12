@@ -45,7 +45,7 @@ def ec_recover_typed_signature(
 
     signature = typed_signature[:-2]
 
-    address = w3.eth.account.recoverHash(prepended_hash, signature=signature)
+    address = w3.eth.account._recover_hash(prepended_hash, signature=signature)
     return address
 
 
