@@ -17,19 +17,18 @@ class MK(object):
 		self.query()
 
 	def query(self):
-		print('accounts_response')
-		print(client.private.get_accounts())
+		print('\nquery')
+		print(self.client.private.get_accounts())
 
 	def onboard(self):
-		print("onboard")
-		onboarding_response = client.onboarding.create_user(
-			stark_public_key=public_x,
-			stark_public_key_y_coordinate=public_y
-		)
-		print('onboarding_response', onboarding_response)
+		print("\nonboard")
+		print(self.client.onboarding.create_user(
+			stark_public_key=self.public_x,
+			stark_public_key_y_coordinate=self.public_y
+		))
 
 	def build_stark(self):
-		print("build stark")
+		print("\nbuild stark")
 		key_pair_with_y = self.client.onboarding.derive_stark_key()
 		self.client.stark_private_key = key_pair_with_y['private_key']
 		(self.public_x, self.public_y) = (
@@ -38,8 +37,9 @@ class MK(object):
 		)
 
 	def build_client(self):
-		print("build client")
+		print("\nbuild client")
 		clargs = {
+			"web3": self.w3,
 			"host": API_HOST_GOERLI,
 			"network_id": NETWORK_ID_GOERLI
 		}
@@ -47,9 +47,9 @@ class MK(object):
 			clargs["eth_private_key"] = self.pk
 		else:
 			clargs["default_ethereum_address"] = self.address
-		print("creating client with clargs:", clargs)
+		print("\ncreating client with clargs:", clargs)
 		return Client(**clargs)
 
 if __name__ == "__main__":
 	MK(input("ethereum address? "), input("private key? "),
-		input("web provider? [default: %s]"%(WPU,)) or WPU)
+		input("web provider? [default: %s] "%(WPU,)) or WPU)
