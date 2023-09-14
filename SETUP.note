@@ -1,0 +1,5 @@
+define TEST_SOURCE_PRIVATE_KEY,TEST_WEB3_PROVIDER_URL env variables in setup.sh
+source setup.sh
+get some test USDC from DYDX
+    TOKEN_ADDRESS: DYDXUSD — 0xF7a2fa2c2025fFe64427dd40Dc190d47ecC8B36e
+
