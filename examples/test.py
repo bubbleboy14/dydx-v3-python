@@ -62,6 +62,9 @@ except DydxApiError as e:
 #
 # Expect signature validation to pass, although the collateralization
 # check will fail.
+expected_error = (
+    'order would put account below collateralization'
+)
 one_minute_from_now_iso = epoch_seconds_to_iso(time.time() + 61)
 try:
     client.private.create_order(
