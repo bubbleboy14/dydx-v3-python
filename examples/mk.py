@@ -35,6 +35,7 @@ class MK(object):
 		    key_pair_with_y['public_key'],
 		    key_pair_with_y['public_key_y_coordinate'],
 		)
+		return self.client.stark_private_key
 
 	def build_client(self):
 		print("\nbuild client")
