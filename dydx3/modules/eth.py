@@ -132,7 +132,7 @@ class Eth(object):
         gas_multiplier = options.pop('gasMultiplier', DEFAULT_GAS_MULTIPLIER)
         if 'gas' not in options:
             try:
-                options['gas'] = int(
+                options['gas'] = hex(
                     method.estimateGas(options) * gas_multiplier
                 )
             except Exception:
@@ -397,11 +397,10 @@ class Eth(object):
             raise ValueError('human_amount is required')
 
         return self.send_eth_transaction(
-            options=dict(
-                send_options,
-                to=to_address,
-                value=Web3.to_wei(human_amount, 'ether'),
-            ),
+            options={
+                'to': to_address,
+                'value': Web3.to_wei(human_amount, 'ether'),
+            },
         )
 
     def transfer_token(

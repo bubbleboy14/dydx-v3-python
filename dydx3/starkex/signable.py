@@ -29,6 +29,7 @@ class Signable(object):
 
     def sign(self, private_key_hex):
         """Sign the hash of the object using the given private key."""
+        print("SIGNABLE.sign private_key_hex: ", private_key_hex, "\n")
         r, s = sign(self.hash, int(private_key_hex, 16))
         return serialize_signature(r, s)
 
